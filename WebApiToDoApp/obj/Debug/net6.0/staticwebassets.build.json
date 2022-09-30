@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "B/z8WrsY1sK+ym3TMTDkW3Bng8zPTkPL3KL/fLRxT5I=",
+  "Source": "WebApiToDoApp",
+  "BasePath": "_content/WebApiToDoApp",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
