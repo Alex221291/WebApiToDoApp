@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lVmgCOlwpYwr7dtHblQX+mQzgMW028kb425uPqPfiw5I1+tXKr0gYh/xn3Nnpg+nlJ9jvoNlmw7QYGX5XSBmtA==",
+  "dgSpecHash": "G4U7a/jHxdJZC2rdeYofzdkjAPdw9M5613DK+zT7SlQgM5/zdU5L1IWFr7GxfUg6UCfd/6cw3QTqJTJ4qG2u6w==",
   "success": true,
-  "projectFilePath": "D:\\C#\\курс C#\\WebApiToDoApp\\WebApiToDoApp\\WebApiToDoApp.csproj",
+  "projectFilePath": "D:\\C#\\WebApiToDoApp\\WebApiToDoApp\\WebApiToDoApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\AplusA\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\AplusA\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.9\\microsoft.entityframeworkcore.6.0.9.nupkg.sha512",

@@ -949,11 +949,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\C#\\курс C#\\WebApiToDoApp\\WebApiToDoApp\\WebApiToDoApp.csproj",
+      "projectUniqueName": "D:\\C#\\WebApiToDoApp\\WebApiToDoApp\\WebApiToDoApp.csproj",
       "projectName": "WebApiToDoApp",
-      "projectPath": "D:\\C#\\курс C#\\WebApiToDoApp\\WebApiToDoApp\\WebApiToDoApp.csproj",
+      "projectPath": "D:\\C#\\WebApiToDoApp\\WebApiToDoApp\\WebApiToDoApp.csproj",
       "packagesPath": "C:\\Users\\AplusA\\.nuget\\packages\\",
-      "outputPath": "D:\\C#\\курс C#\\WebApiToDoApp\\WebApiToDoApp\\obj\\",
+      "outputPath": "D:\\C#\\WebApiToDoApp\\WebApiToDoApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

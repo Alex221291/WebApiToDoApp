@@ -8,9 +8,14 @@ namespace WebApiToDoApp.Services
     public interface IToDoService
     {
         Task<IEnumerable<ToDoViewModel>> GetAllAsync();
+        Task<IEnumerable<ToDoViewModel>> GetCompletedToDoesAsync();
+        Task<IEnumerable<ToDoViewModel>> GetUncompletedToDoesAsync();
         Task<ToDoViewModel?> CreateAsync(ToDoViewModel toDo);
         Task<ToDoViewModel?> EditAsync(UpdateToDoViewModel updateToDo);
         Task<ToDoViewModel?> DeleteAsync(int id);
+        Task<int> QuantityToDoes();
+        Task<int> QuantityCompletedToDoes();
+        Task<int> QuantityUncompletedToDoes();
     }
 
     public class ToDoService : IToDoService
@@ -24,12 +29,37 @@ namespace WebApiToDoApp.Services
 
         public async Task<IEnumerable<ToDoViewModel>> GetAllAsync()
         {
-            return await _db.Tasks.AsNoTracking().Select(t => new ToDoViewModel
-            {
-                Title = t.Title,
-                Discription = t.Discription,
-                IsCompleted = t.IsCompleted
-            }).ToListAsync();
+            return await _db.Tasks.AsNoTracking()
+                .Select(t => new ToDoViewModel
+                {
+                    Title = t.Title,
+                    Discription = t.Discription,
+                    IsCompleted = t.IsCompleted
+                }).ToListAsync();
+        }
+
+        public async Task<IEnumerable<ToDoViewModel>> GetCompletedToDoesAsync()
+        {
+            return await _db.Tasks.AsNoTracking()
+                .Where(t => t.IsCompleted)
+                .Select(t => new ToDoViewModel
+                {
+                    Title = t.Title,
+                    Discription = t.Discription,
+                    IsCompleted = t.IsCompleted
+                }).ToListAsync();
+        }
+
+        public async Task<IEnumerable<ToDoViewModel>> GetUncompletedToDoesAsync()
+        {
+            return await _db.Tasks.AsNoTracking()
+                .Where(t => !t.IsCompleted)
+                .Select(t => new ToDoViewModel
+                {
+                    Title = t.Title,
+                    Discription = t.Discription,
+                    IsCompleted = t.IsCompleted
+                }).ToListAsync();
         }
 
         public async Task<ToDoViewModel?> CreateAsync(ToDoViewModel toDo)
@@ -38,7 +68,7 @@ namespace WebApiToDoApp.Services
             {
                 await _db.Tasks.AddAsync(new ToDo
                 {
-                    Title = toDo.Title, 
+                    Title = toDo.Title,
                     Discription = toDo.Discription,
                     IsCompleted = toDo.IsCompleted
                 });
@@ -65,7 +95,8 @@ namespace WebApiToDoApp.Services
                 toDo.IsCompleted = updateToDo.IsCompleted;
                 await _db.SaveChangesAsync();
 
-                return new ToDoViewModel {
+                return new ToDoViewModel
+                {
                     Title = toDo.Title,
                     Discription = toDo.Discription,
                     IsCompleted = toDo.IsCompleted
@@ -88,7 +119,8 @@ namespace WebApiToDoApp.Services
                 _db.Tasks.Remove(new ToDo() { Id = id });
                 await _db.SaveChangesAsync();
 
-                return new ToDoViewModel {
+                return new ToDoViewModel
+                {
                     Title = toDo.Title,
                     Discription = toDo.Discription,
                     IsCompleted = toDo.IsCompleted
@@ -99,6 +131,21 @@ namespace WebApiToDoApp.Services
                 Console.WriteLine(e);
                 throw;
             }
+        }
+
+        public async Task<int> QuantityToDoes()
+        {
+            return await _db.Tasks.CountAsync();
+        }
+
+        public async Task<int> QuantityCompletedToDoes()
+        {
+            return await _db.Tasks.CountAsync(t => t.IsCompleted);
+        }
+
+        public async Task<int> QuantityUncompletedToDoes()
+        {
+            return await _db.Tasks.CountAsync(t => !t.IsCompleted);
         }
     }
 }

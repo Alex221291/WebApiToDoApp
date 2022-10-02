@@ -15,14 +15,50 @@ namespace WebApiToDoApp.Controllers
             _toDoService = toDoService;
         }
 
+        [Route("GetAllToDoes")]
         [HttpGet]
-        public async Task<IEnumerable<ToDoViewModel?>> Get()
+        public async Task<IEnumerable<ToDoViewModel?>> GetAllToDoes()
         {
             return await _toDoService.GetAllAsync();
         }
 
+        [Route("GetCompletedToDoes")]
+        [HttpGet]
+        public async Task<IEnumerable<ToDoViewModel?>> GetCompletedToDoes()
+        {
+            return await _toDoService.GetCompletedToDoesAsync();
+        }
+
+        [Route("GetUncompletedToDoes")]
+        [HttpGet]
+        public async Task<IEnumerable<ToDoViewModel?>> GetUncompletedToDoes()
+        {
+            return await _toDoService.GetUncompletedToDoesAsync();
+        }
+
+        [Route("GetQuantityToDoes")]
+        [HttpGet]
+        public async Task<int> GetQuantityToDoes()
+        {
+            return await _toDoService.QuantityToDoes();
+        }
+
+        [Route("GetQuantityCompletedToDoes")]
+        [HttpGet]
+        public async Task<int> GetQuantityCompletedToDoes()
+        {
+            return await _toDoService.QuantityCompletedToDoes();
+        }
+
+        [Route("GetQuantityUncompletedToDoes")]
+        [HttpGet]
+        public async Task<int> GetQuantityUncompletedToDoes()
+        {
+            return await _toDoService.QuantityUncompletedToDoes();
+        }
+
         [HttpPost]
-        public async Task<ObjectResult> Post(ToDoViewModel toDo)
+        public async Task<ObjectResult> PostToDo(ToDoViewModel toDo)
         {
             var result = await _toDoService.CreateAsync(toDo);
 
@@ -32,7 +68,7 @@ namespace WebApiToDoApp.Controllers
         }
 
         [HttpPut]
-        public async Task<ObjectResult> Put(UpdateToDoViewModel updateToDo)
+        public async Task<ObjectResult> PutToDo(UpdateToDoViewModel updateToDo)
         {
             var result = await _toDoService.EditAsync(updateToDo);
 
@@ -42,7 +78,7 @@ namespace WebApiToDoApp.Controllers
         }
 
         [HttpDelete]
-        public async Task<ObjectResult> Delete(int id)
+        public async Task<ObjectResult> DeleteToDo(int id)
         {
             var result = await _toDoService.DeleteAsync(id);
 
